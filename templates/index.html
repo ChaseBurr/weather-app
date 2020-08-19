@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Weather app</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <h1 id="title">Weather App</h1>
+        </header>
+
+        <form method="POST">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="city" placeholder="Enter City Name">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary" id="btn-outline-secondary">GET</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="weather-card">
+            <div class="weather">
+                {% if 'city' in weather %}
+                <p id="city">{{ weather.city }}, {{ weather.country }}</p>
+                <p id="temp">{{ weather.temp }}°F</p>
+                <p id="desc">{{ weather.desc }}</p>
+                <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                {% else %}
+                <p id="city">Invalid City Name</p>
+                {% endif %}
+            </div>
+            
+        </div>
+    </body>
+</html>
